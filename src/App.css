@@ -1,0 +1,22 @@
+.header {
+  text-align: center;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.media-card {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-img {
+  width: 200px;
+  height: auto;
+}
