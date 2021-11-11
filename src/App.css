@@ -1,22 +1,31 @@
+/* :root {
+  --width: 100px;
+} */
+
+/* .App {
+  overflow: scroll;
+} */
+
 .header {
   text-align: center;
 }
 
-
 .container {
   display: flex;
   flex-direction: row;
-
+  justify-content: space-evenly;
 }
 
-.media-card {
-  width: 50%;
+
+.card-cnn, .card-fox {
   display: flex;
+  width: 500px;
   flex-direction: column;
   align-items: center;
+  /* position: fixed; */
 }
 
 .post-img {
-  width: 200px;
+  width: 300px;
   height: auto;
 }

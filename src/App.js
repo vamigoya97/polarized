@@ -8,16 +8,20 @@ import { auth } from "./firebase";
 function App() {
 
   const [easybaseData, setEasybaseData] = useState([]);
-  const { db } = useEasybase();
+  const { db, e } = useEasybase();
 
   const mounted  = async() => {
     const ebData = await db("POLAR-VIEWS").return().all();
     setEasybaseData(ebData);
   }
 
-  useEffect(() => {
-    mounted();
-  }, []);
+  // const post  = async() => {
+  //   await db('POLAR-VIEWS').where({
+  //     'mediaoutlet': 'fox'
+  //   }).set({
+  //     'trust': 420
+  //   }).one()
+  // }
 
   const [query, setQuery] = useState('');
   const searchBarFilter = data => {
@@ -40,6 +44,10 @@ function App() {
 
   const [user, setUser] = useState(null);
   useEffect(() => {
+
+    // post();
+    mounted();
+
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       const user = {
         uid: userAuth?.uid,
@@ -47,6 +55,7 @@ function App() {
       }
       if (userAuth) {
         // console.log(userAuth)
+        // console.log(user)
         setUser(user)
       } else {
         setUser(null)
@@ -60,13 +69,13 @@ function App() {
     <div className="App">
       <SignIn />
       <div className='header'>
-          <h1>POLARIZATION</h1>
+          <h1>SWCTM </h1>
           <p>Here is where the explanation and mission of website will be</p>
           <form>
             <input type='text' placeholder='enter words' onChange={event => setQuery(event.target.value)} />
           </form>
       </div>
-      <Container user={user} key={count++} data={searchBarFilter(easybaseData)} />
+      <Container user={user} key={count++} data={searchBarFilter(easybaseData)} db={db} e={e} />
     </div>
   );
 }
